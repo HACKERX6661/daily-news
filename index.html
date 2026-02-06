@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily News Hub</title>
+    <title>Graz News Terminal</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
     <style>
-        :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --accent: #38bdf8; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        h1 { text-align: center; color: var(--accent); font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
-        #news-container { display: grid; gap: 20px; }
-        .news-item { background: var(--card); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent); transition: transform 0.2s; }
-        .news-item:hover { transform: translateY(-5px); }
-        .news-item h3 a { color: var(--accent); text-decoration: none; font-size: 1.3rem; }
-        .news-item p { color: #cbd5e1; line-height: 1.6; margin: 10px 0; }
-        .date { font-size: 0.8rem; color: #94a3b8; }
-        .footer { text-align: center; margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #64748b; border-top: 1px solid var(--card); }
+        :root { --bg: #0a0f1e; --card: #161e31; --text: #e2e8f0; --accent: #22d3ee; --dim: #94a3b8; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; line-height: 1.5; }
+        .container { max-width: 850px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 0; border-bottom: 1px dashed var(--accent); margin-bottom: 30px; }
+        h1 { color: var(--accent); font-size: 2rem; text-transform: uppercase; letter-spacing: 3px; margin: 0; }
+        .loc { font-size: 0.9rem; color: var(--dim); margin-top: 5px; }
+        #news-container { display: flex; flex-direction: column; gap: 15px; }
+        .news-item { background: var(--card); padding: 25px; border-radius: 8px; border: 1px solid #2d3748; position: relative; }
+        .news-item h3 a { color: var(--accent); text-decoration: none; font-size: 1.25rem; display: block; margin-bottom: 10px; }
+        .news-item p { color: var(--text); font-size: 1rem; margin-bottom: 15px; opacity: 0.9; }
+        .date { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; }
+        .footer { text-align: center; margin-top: 60px; padding: 30px; border-top: 1px solid #2d3748; color: var(--dim); font-size: 0.8rem; }
+        a { color: var(--accent); text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Daily News Hub</h1>
+        <header>
+            <h1>News Feed Graz</h1>
+            <div class="loc">Location: 47.0707° N, 15.4395° E • Update: 06:00 AM</div>
+        </header>
         <div id="news-container">
-            </div>
+            <p style="text-align: center; color: var(--accent);">Initialisiere News-Stream...</p>
+        </div>
         <div class="footer">
-            Aktualisiert jeden Morgen um 06:00 Uhr | <a href="https://paypal.me/AlenaGutsol" style="color: #38bdf8; text-decoration: none;">Support me via PayPal</a>
+            Automatisiertes System • <a href="https://paypal.me/AlenaGutsol">Support AlenaGutsol</a>
         </div>
     </div>
 </body>
