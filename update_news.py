@@ -33,6 +33,6 @@ if os.path.exists(file_path):
         
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(new_content)
-        print("Erfolg: News eingefügt.")
+        print("News erfolgreich in HTML geschrieben.")
     else:
-        print("Fehler: Markierungen im HTML fehlen.")
+        print("Markierungen fehlen im HTML!")
