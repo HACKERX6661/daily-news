@@ -1,8 +1,8 @@
 name: News Update Automatisierung
 on:
   schedule:
-    - cron: '0 5 * * *' # Täglich 05:00 UTC = 06:00 Uhr Graz
-  workflow_dispatch: # Ermöglicht manuellen Start
+    - cron: '0 5 * * *' # 06:00 Uhr in Graz
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,24 +10,18 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Code auschecken
-        uses: actions/checkout@v3
-
-      - name: Python einrichten
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
-      - name: Feedparser installieren
+      - name: Install dependencies
         run: pip install feedparser
-
-      - name: News aktualisieren
+      - name: Run script
         run: python update_news.py
-
-      - name: Änderungen speichern
+      - name: Commit and Push
         run: |
-          git config --global user.name "Graz-News-Bot"
-          git config --global user.email "bot@news.at"
+          git config --global user.name "Graz-Bot"
+          git config --global user.email "bot@graz.at"
           git add index.html
-          git commit -m "Automatisches News Update Graz" || echo "Keine Änderungen"
+          git commit -m "Tägliches News-Update Graz" || echo "Keine Änderungen"
           git push
