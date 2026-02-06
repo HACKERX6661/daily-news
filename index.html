@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine News-Seite</title>
+    <title>Daily News Hub</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; background-color: #f9f9f9; }
-        .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #333; text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
-        .news-item { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .news-item:last-child { border-bottom: none; }
-        .news-item h3 { margin: 0 0 10px 0; color: #0056b3; }
-        .news-item a { text-decoration: none; color: inherit; }
-        .news-item a:hover { text-decoration: underline; }
-        .news-item p { margin: 0; color: #555; font-size: 0.95em; }
-        .date { font-size: 0.8em; color: #888; margin-top: 5px; }
+        :root { --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --accent: #38bdf8; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--accent); font-size: 2.5rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+        #news-container { display: grid; gap: 20px; }
+        .news-item { background: var(--card); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent); transition: transform 0.2s; }
+        .news-item:hover { transform: translateY(-5px); }
+        .news-item h3 a { color: var(--accent); text-decoration: none; font-size: 1.3rem; }
+        .news-item p { color: #cbd5e1; line-height: 1.6; margin: 10px 0; }
+        .date { font-size: 0.8rem; color: #94a3b8; }
+        .footer { text-align: center; margin-top: 50px; padding: 20px; font-size: 0.9rem; color: #64748b; border-top: 1px solid var(--card); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Aktuelle Nachrichten</h1>
+        <h1>Daily News Hub</h1>
         <div id="news-container">
-            <p>Lade Nachrichten...</p>
+            </div>
+        <div class="footer">
+            Aktualisiert jeden Morgen um 06:00 Uhr | <a href="https://paypal.me/AlenaGutsol" style="color: #38bdf8; text-decoration: none;">Support me via PayPal</a>
         </div>
     </div>
 </body>
