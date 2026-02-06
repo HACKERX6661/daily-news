@@ -6,44 +6,50 @@ FEEDS = [
     "https://rss.orf.at/news.xml"
 ]
 
-def get_news():
+def get_news_html():
     html = ""
     for url in FEEDS:
-        feed = feedparser.parse(url)
-        # Nimm die ersten 5 News pro Quelle
-        for entry in feed.entries[:5]:
-            description = entry.get('description', '')
-            # Kürze die Beschreibung, falls sie zu lang ist
-            if len(description) > 300:
-                description = description[:300] + "..."
-            
-            html += f'''
-            <div class="news-item">
-                <div class="date">{entry.get('published', 'Aktuell')}</div>
-                <h3><a href="{entry.link}" target="_blank">{entry.title}</a></h3>
-                <p>{description}</p>
-            </div>'''
+        try:
+            feed = feedparser.parse(url)
+            for entry in feed.entries[:5]:
+                date = entry.get('published', 'Aktuell')
+                title = entry.get('title', 'Kein Titel')
+                link = entry.get('link', '#')
+                desc = entry.get('description', '')[:250] + "..."
+                html += f'''
+                <div class="news-item">
+                    <div class="date">{date}</div>
+                    <h3><a href="{link}" target="_blank">{title}</a></h3>
+                    <p>{desc}</p>
+                </div>'''
+        except Exception as e:
+            print(f"Fehler beim Laden von {url}: {e}")
     return html
 
-# Datei einlesen
-if os.path.exists("index.html"):
+def update_index():
+    if not os.path.exists("index.html"):
+        print("index.html nicht gefunden!")
+        return
+
     with open("index.html", "r", encoding="utf-8") as f:
         content = f.read()
 
     start_mark = ""
     end_mark = ""
 
-    try:
-        # Ersetze den Inhalt zwischen den Markierungen
-        parts_start = content.split(start_mark)
-        parts_end = content.split(end_mark)
+    if start_mark in content and end_mark in content:
+        # Alles vor der Start-Markierung + Markierung
+        head = content.split(start_mark)[0] + start_mark
+        # Alles nach der End-Markierung + Markierung
+        tail = end_mark + content.split(end_mark)[1]
         
-        new_content = parts_start[0] + start_mark + get_news() + end_mark + parts_end[1]
-
+        full_content = head + get_news_html() + tail
+        
         with open("index.html", "w", encoding="utf-8") as f:
-            f.write(new_content)
-        print("Update erfolgreich durchgeführt.")
-    except IndexError:
-        print("Fehler: Markierungen oder nicht gefunden!")
-else:
-    print("Fehler: index.html wurde nicht gefunden.")
+            f.write(full_content)
+        print("News erfolgreich eingefügt!")
+    else:
+        print("Markierungen im HTML fehlen!")
+
+if __name__ == "__main__":
+    update_index()
