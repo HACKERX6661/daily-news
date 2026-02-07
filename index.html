@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graz News Hub 📰</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
     <style>
         :root { --bg: #05070a; --card: #111827; --accent: #00f2ff; --text: #e5e7eb; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; text-align: center; }
         .container { max-width: 800px; margin: 0 auto; }
-        header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
-        h1 { font-size: 2.2rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin: 0; }
-        .news-item { background: var(--card); border-radius: 12px; padding: 25px; margin-bottom: 20px; border: 1px solid #1f2937; }
-        .news-item h3 a { color: var(--accent); text-decoration: none; font-size: 1.4rem; font-weight: 700; }
-        .news-item p { line-height: 1.6; color: #d1d5db; margin: 15px 0; }
-        .date { font-size: 0.75rem; color: #9ca3af; }
-        .footer { text-align: center; margin-top: 50px; padding: 30px; border-top: 1px solid #1f2937; color: #4b5563; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .news-item { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #1f2937; text-align: left; }
+        .news-item h3 a { color: var(--accent); text-decoration: none; }
+        .footer { margin-top: 50px; padding: 20px; border-top: 1px solid #1f2937; font-size: 0.8rem; color: #4b5563; }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Graz Daily News</h1>
-            <p style="color: #6b7280; text-align: center;">Update täglich um 06:00 Uhr</p>
-        </header>
+        <h1>GRAZ DAILY NEWS</h1>
+        <p>Update täglich um 06:00 Uhr</p>
+        <hr style="border: 1px solid var(--accent); margin: 20px 0;">
         <div id="news-container">
-<p style="text-align:center;">Warte auf den ersten News-Scan...</p>
+<p style="color:#9ca3af;">News werden geladen... Bitte nach dem ersten grünen Haken die Seite neu laden.</p>
 </div>
         <div class="footer">Automatisiertes System für Graz</div>
     </div>
