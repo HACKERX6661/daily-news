@@ -22,32 +22,25 @@ def run():
     start_mark = ""
     end_mark = ""
     news_content = get_news()
-    
     file_path = "index.html"
     
-    # Falls die Datei existiert, versuchen wir sie zu aktualisieren
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-        
-        # Sicherer Check: Sind beide Markierungen da und NICHT leer?
-        if start_mark in content and end_mark in content:
-            try:
-                before = content.split(start_mark)[0]
-                after = content.split(end_mark)[1]
-                final_html = before + start_mark + news_content + end_mark + after
-            except Exception:
-                # Falls split() doch zickt, Notfall-Layout nutzen
-                final_html = f"<html><body>{news_content}</body></html>"
-        else:
-            # Falls Markierungen fehlen, hängen wir es einfach an
-            final_html = content + "\n" + news_content
-    else:
-        # Falls gar keine index.html da ist, erstellen wir eine rudimentäre
-        final_html = f"<!DOCTYPE html><html><body>{news_content}</body></html>"
+    if not os.path.exists(file_path): return
 
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write(final_html)
+    with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    # Sicherer Split
+    if start_mark in content and end_mark in content:
+        parts_start = content.split(start_mark)
+        parts_end = parts_start[1].split(end_mark)
+        
+        final_html = parts_start[0] + start_mark + news_content + end_mark + parts_end[1]
+        
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(final_html)
+        print("Update erfolgreich durchgeführt.")
+    else:
+        print("Fehler: Markierungen im HTML nicht gefunden. Nichts geändert.")
 
 if __name__ == "__main__":
     run()
