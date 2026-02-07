@@ -4,75 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graz News Hub 📰</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
     <style>
-        :root { --bg: #05070a; --card: #111827; --accent: #00f2ff; --text: #e5e7eb; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; text-align: center; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
-        .news-item { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #1f2937; text-align: left; }
-        .news-item h3 a { color: var(--accent); text-decoration: none; font-weight: bold; }
-        .footer { margin-top: 50px; padding: 20px; border-top: 1px solid #1f2937; font-size: 0.8rem; color: #4b5563; }
+        :root { 
+            --bg: #0b0f19; --card: #161d2f; --accent: #00f2ff; --text: #f3f4f6; --muted: #9ca3af;
+        }
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); 
+            margin: 0; padding: 20px; line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { margin-bottom: 30px; text-align: center; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 4px; font-size: 2.5rem; margin: 0; }
+        
+        .weather-bar {
+            background: linear-gradient(90deg, #1e293b, #334155);
+            padding: 15px; border-radius: 12px; margin-bottom: 30px;
+            font-size: 1.1rem; font-weight: bold; border: 1px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.1);
+        }
+
+        #news-container { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 25px; 
+        }
+        .news-item { 
+            background: var(--card); border-radius: 15px; padding: 25px; border: 1px solid #2d3748; 
+            transition: 0.3s; display: flex; flex-direction: column;
+        }
+        .news-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .date { font-size: 0.75rem; color: var(--accent); margin-bottom: 10px; font-weight: bold; }
+        .news-item h3 { margin: 0 0 12px 0; font-size: 1.3rem; }
+        .news-item h3 a { color: var(--text); text-decoration: none; }
+        .news-item p { color: var(--muted); font-size: 0.95rem; margin: 0; }
+        
+        .footer { margin-top: 60px; padding: 30px; border-top: 1px solid #2d3748; font-size: 0.85rem; color: var(--muted); text-align: center; }
+
+        @media (max-width: 600px) {
+            #news-container { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>GRAZ DAILY NEWS</h1>
-        <p>Update täglich um 06:00 Uhr</p>
-        <hr style="border: 1px solid var(--accent); margin: 20px 0;">
+        <header>
+            <h1>GRAZ DAILY NEWS</h1>
+            <p style="color: var(--muted);">Dein Fenster zur Steiermark & der Welt</p>
+        </header>
+
+        <div class="weather-bar">
+            Graz aktuell: ☁️ 9°C (Gefühlt: 8°C) - Bedeckt
+        </div>
+        
         <div id="news-container">
             
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Sat, 07 Feb 2026 16:43:48 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3341003/" target="_blank">Pflege-Personalschlüssel: Protest in Graz</a></h3>
+                    <p>Unter dem Motto „Nein zur Senkung des Pflege-Personalschlüssels“ hat die KPÖ am Samstag in Graz zu einer Demonstration aufgerufen: Die Kommunisten befürchten eine drastische Versch...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 15:50:18 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3341006/" target="_blank">Graz wählt: Die Ausgangslage</a></h3>
+                    <p>In welche Richtung geht die Stadt Graz politisch? Das ist die Frage im Gemeinderatswahljahr in der Landeshauptstadt. Mitte Februar – also in wenigen Tagen – will Bürgermeisterin El...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 13:59:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3341007/" target="_blank">Peter Filzmaier: „Graz ist im Wahlkampf“</a></h3>
+                    <p>Schon jetzt bringen sich die Parteien für die Graz-Wahl in Stellung, bestätigt Politikwissenschafter Peter Filzmaier im ORF-Steiermark-Samstagsgespräch: Alles drehe sich um die Wah...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 12:45:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340789/" target="_blank">Steirer entwickelten digitale Pistole</a></h3>
+                    <p>Es ist ein weiteres Zeichen für die Ausrichtung steirischer Mobilitätsbetriebe hin zur Waffenproduktion: Die Ilzer Firma M&amp;H verfügt nun über eine Lizenz zum Waffenbau. Das ers...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 11:15:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340788/" target="_blank">Gewächshausprojekt in Warteschleife</a></h3>
+                    <p>Das Gewächshausprojekt für Obst und Gemüse in Neudau/Burgau in der Oststeiermark verzögert sich voraussichtlich um ein Jahr: Rund 92 Millionen Euro sollen investiert werden. Derzei...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 10:35:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340998/" target="_blank">76-Jähriger von Auto erfasst</a></h3>
+                    <p>Auf dem Parkplatz eines Einkaufszentrums in Deutschlandsberg ist es am Freitag zu einem Unfall gekommen: Ein 76 Jahre alter Fußgänger wurde von einem Auto erfasst und verletzt....</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 09:47:20 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3341002/" target="_blank">Skisprungtraining: Elfjähriger verletzt</a></h3>
+                    <p>Bei einem Skisprungtraining auf einer Schanze in Mürzzuschlag ist es am Freitag zu einem schweren Unfall gekommen: Ein Elfjähriger stürzte und erlitt eine schwere Kopfverletzung....</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 06:00:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340622/" target="_blank">Hochwasserschutz gerät teils ins Stocken</a></h3>
+                    <p>In der Steiermark geraten wichtige Hochwasserschutzprojekte ins Stocken. Obwohl im Vorjahr rekordverdächtige 70 Millionen Euro investiert wurden, drohen sich viele Vorhaben zu verz...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Sat, 07 Feb 2026 05:30:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340786/" target="_blank">Job mit Durchblick: Neue Ausbildungschance</a></h3>
+                    <p>Knapp 240 Optikerfilialen gibt es in der gesamten Steiermark – Fachkräfte zu finden ist nach wie vor schwierig. Das Projekt „Job mit Durchblick“ des AMS Steiermark ermöglicht jetzt...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Fri, 06 Feb 2026 19:11:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340944/" target="_blank">Land beschließt Pflegemasterplan</a></h3>
+                    <p>Die FPÖ-ÖVP-Landesregierung hat am Freitag den Startschuss für den „Masterplan Pflege Steiermark“ gegeben: Ziel ist die Erarbeitung einer Gesamtstrategie, um die Pflege für Steirer...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Fri, 06 Feb 2026 18:02:47 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340933/" target="_blank">Erneute Rückruf-Aktion bei Babymilch</a></h3>
+                    <p>Erneut werden Chargen von Babynahrung aufgrund von Verunreinigungen mit Giftstoffen zurückgerufen. Nach Beba- und Alfamino-Produkten von Nestlé sind es jetzt erneut Milumil und Apt...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Fri, 06 Feb 2026 17:00:00 +0000</div>
+                    <h3><a href="https://steiermark.orf.at/stories/3340945/" target="_blank">Rodelunfälle: Kinder und Mutter verletzt</a></h3>
+                    <p>Zu zwei schweren Rodelunfällen ist es am Freitag auf der Mariazeller Bürgeralpe gekommen: Ein elfjähriger Bub prallte gegen eine Baumgruppe; auch eine Mutter und ihr sechsjähriger ...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419502/" target="_blank">Franzosen wanderten in eineinhalb Jahren zu Fuß nach Schanghai</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419495/" target="_blank">Koalitionsgeplänkel über Volksbefragung</a></h3>
-                    <p>Die Ankündigung von Bundeskanzler Christian Stocker (ÖVP), zur Wehrdienstreform eine Volksbefragung abhalten zu lassen, sorgt weiter für Debatten – nun auch innerhalb der Koalition. NEOS lehnt eine Vo...</p>
+                    <p>Die Ankündigung von Bundeskanzler Christian Stocker (ÖVP), zur Wehrdienstreform eine Volksbefragung abhalten zu lassen, sorgt weiter für Debatten – nun auch innerhalb der Koalition...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419499/" target="_blank">Wahl in Thailand: Regierungschef hofft auf Bestätigung</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419496/" target="_blank">Polizei ermittelt wegen Bahnsabotage nahe Bologna</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419494/" target="_blank">Zwei Tote nach Lawine in Norditalien</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419493/" target="_blank">Saudi-Arabien kündigt große Investitionen in Syrien an</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419480/" target="_blank">Lösung laut Sporrer „in nächsten Wochen“</a></h3>
-                    <p>Justizministerin Anna Sporrer (SPÖ) hat am Samstag in der Ö1-Sendereihe „Im Journal zu Gast“ Fehler im Fall des verstorbenen Häftlings in der Justizanstalt Hirtenberg eingeräumt und bezüglich Überbele...</p>
+                    <p>Justizministerin Anna Sporrer (SPÖ) hat am Samstag in der Ö1-Sendereihe „Im Journal zu Gast“ Fehler im Fall des verstorbenen Häftlings in der Justizanstalt Hirtenberg eingeräumt un...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419484/" target="_blank">Wehrdienstverlängerung: NEOS gegen Volksbefragung</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419482/" target="_blank">Pentagon beendet Kooperation mit Harvard</a></h3>
                     <p>...</p>
                 </div>
                 <div class="news-item">
-                    <div style="font-size:0.7rem; color:#9ca3af;">Aktuell</div>
+                    <div class="date">Aktuell</div>
                     <h3><a href="https://orf.at/stories/3419474/" target="_blank">Clintons verlangen öffentliche Anhörung</a></h3>
-                    <p>Im Fall des verstorbenen Sexualstraftäters Jeffrey Epstein laufen seit Monaten Anhörungen im US-Kongress – und fast ebenso lange das Tauziehen um die Teilnahme von Ex-Präsident Bill Clinton und seiner...</p>
+                    <p>Im Fall des verstorbenen Sexualstraftäters Jeffrey Epstein laufen seit Monaten Anhörungen im US-Kongress – und fast ebenso lange das Tauziehen um die Teilnahme von Ex-Präsident Bil...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Aktuell</div>
+                    <h3><a href="https://orf.at/stories/3419478/" target="_blank">Zehntausende trauern nach Anschlag in Pakistan</a></h3>
+                    <p>...</p>
+                </div>
+                <div class="news-item">
+                    <div class="date">Aktuell</div>
+                    <h3><a href="https://orf.at/stories/3419472/" target="_blank">Tschechische Schauspielerin Jana Brejchova ist tot</a></h3>
+                    <p>...</p>
                 </div>
         </div>
-        <div class="footer">Automatisiertes System für Graz</div>
+        
+        <div class="footer">
+            &copy; 2026 Graz News Hub | 📰 v4.0 | Automatisch aktualisiert
+        </div>
     </div>
 </body>
 </html>
