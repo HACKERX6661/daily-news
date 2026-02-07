@@ -2,14 +2,18 @@ import feedparser
 import os
 
 def run():
-    feeds = ["https://rss.orf.at/news.xml", "https://www.tagesschau.de/infosilla/headlines/index~rss2.xml"]
+    # Hier kannst du weitere RSS-Feeds hinzufügen, wenn du noch mehr Quellen willst
+    feeds = [
+        "https://rss.orf.at/news.xml", 
+        "https://www.tagesschau.de/infosilla/headlines/index~rss2.xml"
+    ]
     news_html = ""
     
-    # News abrufen
     for url in feeds:
         try:
             f = feedparser.parse(url)
-            for e in f.entries[:5]:
+            # Hier wurde die Zahl von 5 auf 10 erhöht
+            for e in f.entries[:10]: 
                 date = e.get('published', 'Aktuell')
                 title = e.get('title', 'News')
                 link = e.get('link', '#')
@@ -22,7 +26,6 @@ def run():
                 </div>'''
         except: continue
 
-    # Die komplette HTML-Seite als String definieren
     full_html = f'''<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -52,10 +55,9 @@ def run():
 </body>
 </html>'''
 
-    # Datei einfach komplett überschreiben
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(full_html)
-    print("Seite komplett neu generiert!")
+    print("Seite mit mehr News neu generiert!")
 
 if __name__ == "__main__":
     run()
