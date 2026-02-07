@@ -3,7 +3,6 @@ on:
   schedule:
     - cron: '0 5 * * *'
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,14 +13,12 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Install Dependencies
-        run: pip install feedparser
-      - name: Run Update
-        run: python update_news.py
-      - name: Save Changes
+      - run: pip install feedparser
+      - run: python update_news.py
+      - name: Save
         run: |
-          git config --global user.name "Graz-Bot"
+          git config --global user.name "GrazBot"
           git config --global user.email "bot@news.at"
           git add index.html
-          git commit -m "Update Graz News" || echo "Keine Änderungen"
+          git commit -m "Automatisches News Update" || exit 0
           git push
