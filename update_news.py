@@ -1,38 +1,31 @@
 import feedparser
 import os
 
-def get_news_content():
+def run():
     feeds = ["https://rss.orf.at/news.xml", "https://www.tagesschau.de/infosilla/headlines/index~rss2.xml"]
-    html = ""
+    news_html = ""
     for url in feeds:
         try:
             f = feedparser.parse(url)
             for e in f.entries[:5]:
-                d = e.get('published', 'Aktuell')
-                t = e.get('title', 'News')
-                l = e.get('link', '#')
-                s = e.get('description', '')[:250] + "..."
-                html += f'<div class="news-item"><div class="date">{d}</div>'
-                html += f'<h3><a href="{l}" target="_blank">{t}</a></h3>'
-                html += f'<p>{s}</p></div>'
-        except: continue
-    return html
+                news_html += f'<div class="news-item"><div style="font-size:0.7rem;color:#9ca3af;">{e.get("published", "Aktuell")}</div>'
+                news_html += f'<h3><a href="{e.link}" target="_blank">{e.title}</a></h3>'
+                news_html += f'<p>{e.get("description", "")[:200]}...</p></div>'
+        except Exception as err:
+            print(f"Fehler bei Feed {url}: {err}")
+            continue
 
-file_path = "index.html"
-start_m, end_m = "", ""
+    if os.path.exists("index.html"):
+        with open("index.html", "r", encoding="utf-8") as f:
+            content = f.read()
+        start, end = "", ""
+        if start in content and end in content:
+            new_content = content.split(start)[0] + start + news_html + end + content.split(end)[1]
+            with open("index.html", "w", encoding="utf-8") as f:
+                f.write(new_content)
+            print("Erfolgreich aktualisiert!")
+        else:
+            print("Markierungen oder nicht gefunden!")
 
-if os.path.exists(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
-    
-    if start_m in content and end_m in content:
-        parts = content.split(start_m)
-        head = parts[0] + start_m
-        tail = end_m + parts[1].split(end_m)[1]
-        new_content = head + get_news_content() + tail
-        
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(new_content)
-        print("News erfolgreich in HTML geschrieben.")
-    else:
-        print("Markierungen fehlen im HTML!")
+if __name__ == "__main__":
+    run()
