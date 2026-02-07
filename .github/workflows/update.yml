@@ -14,11 +14,12 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install feedparser
-      - run: python update_news.py
-      - name: Save
+      - name: Run Update
+        run: python update_news.py
+      - name: Save Changes
         run: |
           git config --global user.name "GrazBot"
           git config --global user.email "bot@news.at"
           git add index.html
-          git commit -m "Automatisches News Update" || exit 0
+          git commit -m "Fix: Automatisches Update" || exit 0
           git push
